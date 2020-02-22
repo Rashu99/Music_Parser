@@ -17,4 +17,9 @@ public class Tables {
 	 * The table public.albums
 	 */
 	public static final com.songspk.tables.Albums ALBUMS = com.songspk.tables.Albums.ALBUMS;
+
+	/**
+	 * The table public.songs
+	 */
+	public static final com.songspk.tables.Songs SONGS = com.songspk.tables.Songs.SONGS;
 }
