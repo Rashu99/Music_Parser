@@ -19,6 +19,7 @@ public class Keys {
 	// -------------------------------------------------------------------------
 
 	public static final org.jooq.Identity<com.songspk.tables.records.AlbumsRecord, java.lang.Long> IDENTITY_ALBUMS = Identities0.IDENTITY_ALBUMS;
+	public static final org.jooq.Identity<com.songspk.tables.records.SongsRecord, java.lang.Long> IDENTITY_SONGS = Identities0.IDENTITY_SONGS;
 
 	// -------------------------------------------------------------------------
 	// UNIQUE and PRIMARY KEY definitions
@@ -31,6 +32,7 @@ public class Keys {
 	// FOREIGN KEY definitions
 	// -------------------------------------------------------------------------
 
+	public static final org.jooq.ForeignKey<com.songspk.tables.records.SongsRecord, com.songspk.tables.records.AlbumsRecord> SONGS__SONGS_ALBUM_ID_FKEY = ForeignKeys0.SONGS__SONGS_ALBUM_ID_FKEY;
 
 	// -------------------------------------------------------------------------
 	// [#1459] distribute members to avoid static initialisers > 64kb
@@ -38,10 +40,15 @@ public class Keys {
 
 	private static class Identities0 extends org.jooq.impl.AbstractKeys {
 		public static org.jooq.Identity<com.songspk.tables.records.AlbumsRecord, java.lang.Long> IDENTITY_ALBUMS = createIdentity(com.songspk.tables.Albums.ALBUMS, com.songspk.tables.Albums.ALBUMS.ID);
+		public static org.jooq.Identity<com.songspk.tables.records.SongsRecord, java.lang.Long> IDENTITY_SONGS = createIdentity(com.songspk.tables.Songs.SONGS, com.songspk.tables.Songs.SONGS.ID);
 	}
 
 	private static class UniqueKeys0 extends org.jooq.impl.AbstractKeys {
 		public static final org.jooq.UniqueKey<com.songspk.tables.records.AlbumsRecord> ALBUMS_LINK_KEY = createUniqueKey(com.songspk.tables.Albums.ALBUMS, com.songspk.tables.Albums.ALBUMS.LINK);
 		public static final org.jooq.UniqueKey<com.songspk.tables.records.AlbumsRecord> ALBUMS_PKEY = createUniqueKey(com.songspk.tables.Albums.ALBUMS, com.songspk.tables.Albums.ALBUMS.ID);
+	}
+
+	private static class ForeignKeys0 extends org.jooq.impl.AbstractKeys {
+		public static final org.jooq.ForeignKey<com.songspk.tables.records.SongsRecord, com.songspk.tables.records.AlbumsRecord> SONGS__SONGS_ALBUM_ID_FKEY = createForeignKey(com.songspk.Keys.ALBUMS_PKEY, com.songspk.tables.Songs.SONGS, com.songspk.tables.Songs.SONGS.ALBUM_ID);
 	}
 }

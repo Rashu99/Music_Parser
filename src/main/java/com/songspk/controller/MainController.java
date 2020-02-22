@@ -36,9 +36,16 @@ public class MainController extends BaseController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/search/{id}")
     public String searchSong(@PathVariable("id") Long songId, ModelMap map){
-        Album x = new GenericDB<Album>().getRow(Albums.ALBUMS,Album.class,Albums.ALBUMS.ID.eq(songId));
+        Song x = new GenericDB<Song>().getRow(Songs.SONGS,Song.class,Songs.SONGS.ID.eq(songId));
         map.addAttribute("LINK",x.link);
         map.addAttribute("NAME",x.movie);
+        return "index";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/album/{id}")
+    public String searchAlbum(@PathVariable("id") Long albumId, ModelMap map) {
+        Album x = new GenericDB<Album>().getRow(Albums.ALBUMS,Album.class,Albums.ALBUMS.ID.eq(albumId));
+        System.out.println(x.director);
         return "index";
     }
 }
