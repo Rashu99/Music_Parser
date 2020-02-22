@@ -1,0 +1,44 @@
+package com.songspk.controller;
+
+import com.songspk.entity.Album;
+import com.songspk.global.GenericDB;
+import com.songspk.entity.Song;
+import com.songspk.tables.Albums;
+import com.songspk.tables.Songs;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+/**
+ * User: rishabh
+ */
+@Controller
+@RequestMapping("/song")
+public class MainController extends BaseController {
+
+    @RequestMapping(method = RequestMethod.GET, value = "")
+    public String show(){
+        return "index";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/top")
+    public @ResponseBody String showTop(){
+        return "Top songs will be updated soon";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/new")
+    public @ResponseBody String showNew(){
+        return "New songs will be updated soon";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/search/{id}")
+    public String searchSong(@PathVariable("id") Long songId, ModelMap map){
+        Album x = new GenericDB<Album>().getRow(Albums.ALBUMS,Album.class,Albums.ALBUMS.ID.eq(songId));
+        map.addAttribute("LINK",x.link);
+        map.addAttribute("NAME",x.movie);
+        return "index";
+    }
+}
